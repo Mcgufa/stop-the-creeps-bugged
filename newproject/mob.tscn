@@ -1,0 +1,71 @@
+[gd_scene load_steps=10 format=3 uid="uid://c42k1rymaci4m"]
+
+[ext_resource type="Texture2D" uid="uid://cgrysl6i25dwe" path="res://art/enemyFlyingAlt_1.png" id="1_iapjo"]
+[ext_resource type="Script" path="res://mob.gd" id="1_vtmjg"]
+[ext_resource type="Texture2D" uid="uid://durfb4xh1jb2f" path="res://art/enemyFlyingAlt_2.png" id="2_cdbgi"]
+[ext_resource type="Texture2D" uid="uid://b47ff5wt83rms" path="res://art/enemySwimming_1.png" id="3_03s5b"]
+[ext_resource type="Texture2D" uid="uid://bum1s3skgysp1" path="res://art/enemySwimming_2.png" id="4_427te"]
+[ext_resource type="Texture2D" uid="uid://c61ss3hdhvhlf" path="res://art/enemyWalking_1.png" id="5_33rb3"]
+[ext_resource type="Texture2D" uid="uid://t6i86hbtfka4" path="res://art/enemyWalking_2.png" id="6_pbn6g"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ajtus"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iapjo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_cdbgi")
+}],
+"loop": true,
+"name": &"Fly",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_03s5b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_427te")
+}],
+"loop": true,
+"name": &"Swim",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_33rb3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_pbn6g")
+}],
+"loop": true,
+"name": &"Walk",
+"speed": 3.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_pvjca"]
+radius = 54.6667
+height = 184.0
+
+[node name="Mob" type="RigidBody2D"]
+position = Vector2(182, 151)
+rotation = 1.5708
+scale = Vector2(0.75, 0.75)
+collision_mask = 0
+gravity_scale = 0.0
+script = ExtResource("1_vtmjg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ajtus")
+animation = &"Fly"
+frame_progress = 0.0942138
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-9.33334, 9.33333)
+shape = SubResource("CapsuleShape2D_pvjca")
+metadata/_edit_group_ = true
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+metadata/_edit_group_ = true
